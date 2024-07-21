@@ -1,0 +1,29 @@
+<?php
+class MultaDAO
+{
+    private $conexao;
+
+    public function __construct($conexao)
+    {
+        $this->conexao = $conexao;
+    }
+
+    public function listarMultas()
+    {
+        $query = "SELECT * FROM multas";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function registrarMulta(MultaDTO $multa)
+    {
+        $query = "INSERT INTO multas (id_usuario, valor, data) VALUES (:id_usuario, :valor, :data)";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(":id_usuario", $multa->getIdUsuario());
+        $stmt->bindValue(":valor", $multa->getValor());
+        $stmt->bindValue(":data", $multa->getData());
+        $stmt->execute();
+    }
+}
+?>

@@ -1,0 +1,29 @@
+<?php
+class RegistroAcoesDAO
+{
+    private $conexao;
+
+    public function __construct($conexao)
+    {
+        $this->conexao = $conexao;
+    }
+
+    public function listarAcoes()
+    {
+        $query = "SELECT * FROM registro_acoes";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function registrarAcao(RegistroAcoesDTO $acao)
+    {
+        $query = "INSERT INTO registro_acoes (id_usuario, acao, data) VALUES (:id_usuario, :acao, :data)";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(":id_usuario", $acao->getIdUsuario());
+        $stmt->bindValue(":acao", $acao->getAcao());
+        $stmt->bindValue(":data", $acao->getData());
+        $stmt->execute();
+    }
+}
+?>

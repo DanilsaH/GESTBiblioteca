@@ -1,0 +1,22 @@
+<?php
+require_once '../model/DAO/AtualizacaoEstoqueDAO.php';
+require_once '../model/DTO/AtualizacaoEstoqueDTO.php';
+
+class AtualizacaoEstoqueController {
+    private $atualizacaoEstoqueDAO;
+
+    public function __construct() {
+        $this->atualizacaoEstoqueDAO = new AtualizacaoEstoqueDAO(Conexao::conectar());
+    }
+
+    public function atualizarEstoque($idLivro, $quantidade) {
+        $atualizacaoEstoqueDTO = new AtualizacaoEstoqueDTO();
+        $atualizacaoEstoqueDTO->setIdLivro($idLivro);
+        $atualizacaoEstoqueDTO->setQuantidade($quantidade);
+
+        $this->atualizacaoEstoqueDAO->atualizarEstoque($atualizacaoEstoqueDTO);
+    }
+
+    // Outros métodos para operações relacionadas à atualização de estoque
+}
+?>

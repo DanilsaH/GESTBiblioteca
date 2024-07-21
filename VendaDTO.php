@@ -1,0 +1,58 @@
+<?php
+class VendaDTO {
+    private $id;
+    private $idLivro;
+    private $dataVenda;
+    private $quantidade;
+    private $valorTotal;
+
+    public function __construct($id, $idLivro, $dataVenda, $quantidade, $valorTotal) {
+        $this->id = $id;
+        $this->idLivro = $idLivro;
+        $this->dataVenda = $dataVenda;
+        $this->quantidade = $quantidade;
+        $this->valorTotal = $valorTotal;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getIdLivro() {
+        return $this->idLivro;
+    }
+
+    public function getDataVenda() {
+        return $this->dataVenda;
+    }
+
+    public function getQuantidade() {
+        return $this->quantidade;
+    }
+
+    public function getValorTotal() {
+        return $this->valorTotal;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setIdLivro($idLivro) {
+        $this->idLivro = $idLivro;
+    }
+
+    public function setDataVenda($dataVenda) {
+        $this->dataVenda = $dataVenda;
+    }
+
+    public function setQuantidade($quantidade) {
+        $this->quantidade = $quantidade;
+    }
+
+    public function setValorTotal($valorTotal) {
+        $this->valorTotal = $valorTotal;
+    }
+}
+?>
+

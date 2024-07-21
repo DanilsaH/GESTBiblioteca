@@ -1,0 +1,22 @@
+<?php
+require_once 'Model/EmprestimoDTO.php'; // Importa o DTO correspondente
+require_once 'Model/Conexao.php'; // Arquivo de conexão com o banco de dados
+
+class EmprestimoDAO {
+    private $conexao;
+
+    public function __construct(PDO $conexao) {
+        $this->conexao = $conexao;
+    }
+
+    public function registrarEmprestimo($idUsuario, $idLivro, $dataEmprestimo, $dataDevolucao) {
+        // Implementar lógica para inserir um novo registro de empréstimo no banco de dados
+    }
+
+    public function registrarDevolucao($idEmprestimo, $dataDevolucao) {
+        // Implementar lógica para registrar a devolução de um livro
+    }
+
+    // Outros métodos relacionados a empréstimos e devoluções
+}
+?>

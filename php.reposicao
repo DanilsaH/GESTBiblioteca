@@ -1,0 +1,29 @@
+<?php
+class ReposicaoDAO
+{
+    private $conexao;
+
+    public function __construct($conexao)
+    {
+        $this->conexao = $conexao;
+    }
+
+    public function listarReposicoes()
+    {
+        $query = "SELECT * FROM reposicoes";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function registrarReposicao(ReposicaoDTO $reposicao)
+    {
+        $query = "INSERT INTO reposicoes (id_livro, quantidade, data) VALUES (:id_livro, :quantidade, :data)";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(":id_livro", $reposicao->getIdLivro());
+        $stmt->bindValue(":quantidade", $reposicao->getQuantidade());
+        $stmt->bindValue(":data", $reposicao->getData());
+        $stmt->execute();
+    }
+}
+?>

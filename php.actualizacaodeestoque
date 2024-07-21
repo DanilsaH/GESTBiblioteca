@@ -1,0 +1,29 @@
+<?php
+class AtualizacaoEstoqueDAO
+{
+    private $conexao;
+
+    public function __construct($conexao)
+    {
+        $this->conexao = $conexao;
+    }
+
+    public function listarAtualizacoes()
+    {
+        $query = "SELECT * FROM atualizacoes_estoque";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function registrarAtualizacao(AtualizacaoEstoqueDTO $atualizacao)
+    {
+        $query = "INSERT INTO atualizacoes_estoque (id_livro, quantidade, data) VALUES (:id_livro, :quantidade, :data)";
+        $stmt = $this->conexao->prepare($query);
+        $stmt->bindValue(":id_livro", $atualizacao->getIdLivro());
+        $stmt->bindValue(":quantidade", $atualizacao->getQuantidade());
+        $stmt->bindValue(":data", $atualizacao->getData());
+        $stmt->execute();
+    }
+}
+?>
